@@ -1,0 +1,10 @@
+@mixin status($bg-color, $width) {
+  background-color: $bg-color;
+  border-radius: 25px;
+  width: $width;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
+}

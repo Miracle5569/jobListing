@@ -1,0 +1,400 @@
+@use "../Переменные/variables";
+@import "../Обнуление/zeroing";
+@import "../Технические-стили/container";
+@import "../Примиси/status";
+@import "../Расширения/statusStyle";
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .main-header {
+    background-color: variables.$desaturated-dark-cyan;
+
+    &.main-header__content {
+      height: 100px;
+    }
+
+    &__background-image {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .main-page {
+    z-index: 100;
+
+    &__filtersElements {
+      width: 100%;
+      height: 80px;
+      margin-top: -40px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 0px 34px -6px rgba(34, 60, 80, 0.2);
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+
+      &-items {
+        display: flex;
+      }
+
+      &-item {
+        @extend %statusStyles;
+        margin-left: 15px;
+        padding-right: 0px;
+        text-align: center;
+      }
+
+      &-itemClose {
+        align-items: center;
+        justify-content: center;
+        background-color: variables.$desaturated-dark-cyan;
+        color: white;
+        width: 30px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 9px 8px 6px 8px;
+        margin-left: 5px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: variables.$very-dark-grayish-cyan;
+        }
+      }
+
+      &-clear {
+        color: variables.$desaturated-dark-cyan;
+        margin-left: 10px;
+
+        &:hover {
+          transition: all ease-in-out 0s;
+          cursor: pointer;
+          font-weight: 700;
+          text-decoration: underline;
+        }
+      }
+
+      &.main-page__filtersElements_display_default_hide_block {
+        display: none;
+      }
+    }
+
+    &__content {
+      height: 100%;
+      margin-top: 70px;
+    }
+  }
+
+  .vacancy {
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    box-shadow: 0px 0px 34px -6px rgba(34, 60, 80, 0.2);
+    position: relative;
+    overflow: hidden;
+
+    &.vacancy__properties {
+      width: 100%;
+      height: 150px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    &__green-line {
+      width: 6px;
+      height: 100%;
+      position: absolute;
+      background-color: variables.$desaturated-dark-cyan;
+    }
+
+    &__info {
+      width: 400px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-left: 50px;
+
+      &-logo {
+        width: 110px;
+        margin-right: 15px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &-content {
+        width: 100%;
+
+        & > *:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+
+      &-title {
+        display: flex;
+        max-width: 100%;
+        align-items: center;
+      }
+
+      &-company {
+        color: variables.$desaturated-dark-cyan;
+        font-weight: 700;
+        font-size: 16px;
+        margin-right: 5px;
+      }
+
+      &-status {
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-left: 10px;
+      }
+
+      &-statusNew {
+        @include status(variables.$desaturated-dark-cyan, 50px);
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      &-statusFeatured {
+        @include status(variables.$very-dark-grayish-cyan, 80px);
+        margin-right: 60px;
+        font-size: 14px;
+      }
+
+      &-name {
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      &-tags {
+        display: flex;
+        max-width: 255px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      &-tagsItem {
+        position: relative;
+        font-size: 14px;
+        color: variables.$dark-grayish-cyan;
+      }
+
+      &-tagsDot {
+        width: 5px;
+        height: 5px;
+        background-color: variables.$dark-grayish-cyan;
+        opacity: 0.6;
+        border-radius: 50%;
+      }
+    }
+
+    &__filters {
+      max-width: 400px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 30px;
+
+      &-items {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+      }
+
+      &-item {
+        @extend %statusStyles;
+
+        &:not(:last-child) {
+          margin-right: 15px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: variables.$desaturated-dark-cyan;
+          color: white;
+        }
+
+        &:active {
+          transform: scale(0.9);
+          background-color: darken(variables.$button-bg, 5%);
+          box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+        }
+
+        &:before,
+        &:after {
+          position: absolute;
+          content: "";
+          display: block;
+          width: 140%;
+          height: 100%;
+          left: -20%;
+          z-index: -1000;
+          transition: all ease-in-out 0.5s;
+          background-repeat: no-repeat;
+        }
+
+        &:before {
+          display: none;
+          top: -75%;
+          background-image: radial-gradient(
+              circle,
+              variables.$button-bg 20%,
+              transparent 20%
+            ),
+            radial-gradient(
+              circle,
+              transparent 20%,
+              variables.$button-bg 20%,
+              transparent 30%
+            ),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(
+              circle,
+              transparent 10%,
+              variables.$button-bg 15%,
+              transparent 20%
+            ),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%);
+          background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%,
+            15% 15%, 10% 10%, 18% 18%;
+        }
+
+        &:after {
+          display: none;
+          bottom: -75%;
+          background-image: radial-gradient(
+              circle,
+              variables.$button-bg 20%,
+              transparent 20%
+            ),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(
+              circle,
+              transparent 10%,
+              variables.$button-bg 15%,
+              transparent 20%
+            ),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%),
+            radial-gradient(circle, variables.$button-bg 20%, transparent 20%);
+          background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%,
+            20% 20%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: variables.$device-width-870) {
+    .main-page {
+      &__filtersElements {
+        height: auto;
+        padding: 20px 30px 10px 0;
+
+        &-items {
+          flex-wrap: wrap;
+        }
+
+        &-item {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .vacancy {
+      flex-direction: column;
+      overflow: visible;
+
+      &.vacancy__properties {
+        height: 260px;
+        margin-top: 60px;
+        border-top-left-radius: 5px;
+      }
+
+      &__green-line {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+
+      &__info {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: -30px 0 0 25px;
+        width: 85%;
+        padding-bottom: 20px;
+
+        &-logo {
+          img {
+            width: 60px;
+            height: 60px;
+            margin: 0 0 10px 0;
+          }
+        }
+
+        &-company {
+          font-size: 14px;
+        }
+
+        &-name {
+          font-size: 17px;
+        }
+
+        &-status {
+          margin-left: 25px;
+        }
+
+        &-tags {
+          margin-top: 15px;
+          max-width: 200px;
+        }
+
+        &-tagsDot {
+          margin-bottom: 2px;
+        }
+      }
+
+      &__filters {
+        margin: 0 0 0 25px;
+        width: 85%;
+
+        &-items {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+
+        &-item {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: variables.$device-width-450) {
+    .vacancy__info {
+      border-bottom: 1px solid variables.$dark-grayish-cyan;
+    }
+  }
+}
